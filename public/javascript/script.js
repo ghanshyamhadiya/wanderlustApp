@@ -16,13 +16,8 @@
     })
 })()
 
-<<<<<<< HEAD
 
-//include tax switch
-=======
-//include tax switch
 
->>>>>>> 581ccff (Deleted index.js, updated script.js and index.ejs, added app.js)
 const switchButton = document.getElementById("flexSwitchCheckDefault");
 const priceElements = document.querySelectorAll(".price");
 const taxInfos = document.querySelectorAll(".tax-info");
@@ -51,11 +46,7 @@ function handleResize() {
             card.style.transition = 'height 0.3s ease';
             card.style.height = 'auto';
         });
-<<<<<<< HEAD
-    } else { 
-=======
-    } else { // Expand on desktop
->>>>>>> 581ccff (Deleted index.js, updated script.js and index.ejs, added app.js)
+    } else {
         cards.forEach(card => {
             card.style.height = '100%';
         });
@@ -63,52 +54,50 @@ function handleResize() {
 }
 
 window.addEventListener('resize', handleResize);
-<<<<<<< HEAD
 handleResize(); 
 
 
-=======
 handleResize(); // Initial call
 
 
-//filter
-// Price Filter
->>>>>>> 581ccff (Deleted index.js, updated script.js and index.ejs, added app.js)
-// Price Filter
-document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        const minPrice = this.getAttribute('data-min');
-        const maxPrice = this.getAttribute('data-max');
-        filterListings(minPrice, maxPrice);
+
+// Price Filter// Price Filter
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const minPrice = this.getAttribute('data-min');
+            const maxPrice = this.getAttribute('data-max');
+            filterListings(minPrice, maxPrice);
+        });
     });
-});
 
-function filterListings(minPrice, maxPrice) {
-    const listings = document.querySelectorAll('.listing-item');
+    function filterListings(minPrice, maxPrice) {
+        const listings = document.querySelectorAll('.listing-item');
 
-    // Show all if Clear Filter is clicked
-    if (minPrice === '' && maxPrice === '') {
-        listings.forEach(listing => listing.style.display = 'block');
-        return; // Exit early if no filter
+        // Convert minPrice and maxPrice to numbers or set to null if empty
+        const min = minPrice ? parseFloat(minPrice) : null;
+        const max = maxPrice ? parseFloat(maxPrice) : null;
+
+        listings.forEach(listing => {
+            const price = parseFloat(listing.getAttribute('data-price'));
+            
+            // Check price range conditions
+            let priceMatch = true;
+            if (min !== null && max !== null) {
+                priceMatch = price >= min && price <= max;
+            } else if (min !== null) {
+                priceMatch = price >= min;
+            } else if (max !== null) {
+                priceMatch = price <= max;
+            }
+
+            listing.style.display = priceMatch ? 'block' : 'none';
+        });
+
+        // Reset filter condition: show all listings if both min and max are null
+        if (min === null && max === null) {
+            listings.forEach(listing => listing.style.display = 'block');
+        }
     }
-
-    listings.forEach(listing => {
-        const price = parseFloat(listing.getAttribute('data-price'));
-
-        // Price filter condition
-        let priceMatch = true;
-        if (minPrice !== '' && maxPrice !== '') {
-            priceMatch = price >= parseFloat(minPrice) && price <= parseFloat(maxPrice);
-        } else if (minPrice !== '' && maxPrice === '') {
-            priceMatch = price >= parseFloat(minPrice);
-        }
-
-        // Show/hide listing based on price condition
-        if (priceMatch) {
-            listing.style.display = 'block';
-        } else {
-            listing.style.display = 'none';
-        }
-    });
-}
+});
