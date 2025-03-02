@@ -1,31 +1,31 @@
 <% layout("/layouts/boilerplates") %>
     <div class="container mt-5">
-        <div class="tax-switch">
-            <div class="form-check form-switch">
+        <div class="tax-switch-container">
+            <div class="form-check form-switch tax-toggle">
                 <input class="form-check-input custom-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Include taxes</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault">Include Taxes</label>
+            </div>
+            <div class="price-filter">
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle filter-btn" type="button" id="priceFilter"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter by Price
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="priceFilter">
+                        <li><a class="dropdown-item" href="#" data-min="0" data-max="1000">₹0 - ₹1000</a></li>
+                        <li><a class="dropdown-item" href="#" data-min="1000" data-max="2000">₹1000 - ₹2000</a></li>
+                        <li><a class="dropdown-item" href="#" data-min="2000" data-max="3500">₹2000 - ₹3500</a></li>
+                        <li><a class="dropdown-item" href="#" data-min="3500" data-max="">₹3500+</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" data-min="" data-max="">Clear Filter</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
-    <div class="d-flex justify-content-between align-items-center my-4">
-        <h3 class="mb-0">Big, small, we have it all</h3>
-        <div class="d-flex gap-2">
-            <!-- Filter Button with Dropdown -->
-            <div class="dropdown">
-                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="priceFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by Price
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="priceFilter">
-                    <li><a class="dropdown-item" href="#" data-min="0" data-max="1000">₹0 - ₹1000</a></li>
-                    <li><a class="dropdown-item" href="#" data-min="1000" data-max="2000">₹1000 - ₹2000</a></li>
-                    <li><a class="dropdown-item" href="#" data-min="2000" data-max="3500">₹2000 - ₹3500</a></li>
-                    <li><a class="dropdown-item" href="#" data-min="3500" data-max="">₹3500+</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" data-min="" data-max="">Clear Filter</a></li>
-                </ul>
-            </div>
+
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <h3 class="mb-0">Big, small, we have it all</h3>
         </div>
-    </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             <% for (let listing of allListing) { %>
                 <div class="col listing-item" data-price="<%= listing.price %>">
@@ -67,43 +67,3 @@
                 <% } %>
         </div>
     </div>
-
-    <script>
-        const switchButton = document.getElementById("flexSwitchCheckDefault");
-        const priceElements = document.querySelectorAll(".price");
-        const taxInfos = document.querySelectorAll(".tax-info");
-
-        switchButton.addEventListener("change", (e) => {
-            priceElements.forEach((priceElement, index) => {
-                const originalPrice = parseFloat(priceElement.getAttribute("data-original-price"));
-                const taxInfo = taxInfos[index];
-
-                if (e.target.checked) {
-                    const priceWithTax = originalPrice * 1.18;
-                    priceElement.textContent = `₹ ${priceWithTax.toLocaleString("en-in")} / Night`;
-                    taxInfo.style.visibility = "visible";
-                } else {
-                    priceElement.textContent = `₹ ${originalPrice.toLocaleString("en-in")} / Night`;
-                    taxInfo.style.visibility = "hidden";
-                }
-            });
-        });
-
-        // Responsive collapse behavior for smaller screens
-        function handleResize() {
-            const cards = document.querySelectorAll('.collapse-card');
-            if (window.innerWidth < 768) { // Collapse on mobile
-                cards.forEach(card => {
-                    card.style.transition = 'height 0.3s ease';
-                    card.style.height = 'auto';
-                });
-            } else { // Expand on desktop
-                cards.forEach(card => {
-                    card.style.height = '100%';
-                });
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Initial call
-    </script>
