@@ -1,0 +1,17 @@
+<% layout("/layouts/boilerplates") %>
+
+<div class="error-container">
+    <div class="error-content">
+        <h1 class="error-title">
+            <span class="typewriter-oops" data-text="Oops!">Oops!</span>
+        </h1>
+        <p class="error-subtitle">
+            <span class="typewriter" data-text="Something went wrong.">Something went wrong.</span>
+        </p>
+        <p class="error-details">
+            <span class="message"><%= message %></span>
+            <span class="status-code"><%= status %></span>
+        </p>
+        <a href="/listing" class="btn-custom">Go to listings</a>
+    </div>
+</div>

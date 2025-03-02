@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplates") %>
+
+
+<div class="row my-3 unique-signup-wrapper">
+    <h1 class="my-2 col-6 offset-3 signup-title-gradient">
+        Signup
+    </h1>
+    <div class="col-6 offset-3 signup-container-shadow">
+        <form action="/signup" method="POST" class="needs-validation custom-signup-form" novalidate>
+            <div class="mb-3 input-group-float">
+                <input type="text" name="username" id="username"
+                class="form-control input-glow"
+                required />
+                <label for="username" class="form-label floating-label">username</label>
+                <div class="valid-feedback ">
+                    Looks good!
+                </div>
+            </div>
+            
+            <div class="mb-3 input-group-float">
+                <input type="email" name="email" id="email"
+                class="form-control input-glow"
+                required />
+                <label for="email" class="form-label floating-label glow-mail">email</label>
+                <div class="valid-feedback ">
+                    Looks good!
+                </div>
+            </div>
+            
+            <div class="mb-3 input-group-float">
+                <input type="password" name="password" id="password"
+                class="form-control input-glow"
+                required oninput="checkStrength(this.value)"/>
+                <label for="password" class="form-label floating-label glow-pass">password</label>
+            </div>
+                <div class="strength-container">
+                    <p>Strength: <span id="strength"></span></p>
+                </div>
+                <div class="signup_reco">
+                    <p>already have account?? <a href="/login">Login</a></p>
+                </div>
+            <button type="submit" class="btn btn-primary custom-btn-blue">Sign Up</button>
+        </form>
+    </div>
+</div>

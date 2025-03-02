@@ -1,0 +1,18 @@
+
+<% if (success && success.length) { %>
+    <div class="message-container" id="success-message">
+        <div class="flash-message flash-success"><%= success %></div>
+    </div>
+<% } %>
+
+<% if (update && update.length) { %>
+    <div class="message-container" id="update-message">
+        <div class="flash-message flash-update"><%= update %></div>
+    </div>
+<% } %>
+
+<% if (error && error.length) { %>
+    <div class="message-container" id="error-message">
+        <div class="flash-message flash-error"><%= error %></div>
+    </div>
+<% } %>

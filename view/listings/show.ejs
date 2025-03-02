@@ -1,0 +1,272 @@
+<% layout("/layouts/boilerplates") %>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Left Column: Listing Details -->
+        <div class="col-12 col-md-7 col-lg-8 mb-4">
+          <div class="card shadow-lg border-0"
+            style="border-radius: 15px; overflow: hidden; background: linear-gradient(to bottom right, #ffffff, #f8f9fa); transition: transform 0.3s ease, box-shadow 0.3s ease;"
+            onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0, 0, 0, 0.1)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+            <div class="card-header text-center bg-primary text-white"
+              style="border-bottom: 3px solid #ffffff; padding: 1.5rem;">
+              <h3 class="card-title" style="margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                <strong>
+                  <%= listing.title %>
+                </strong>
+              </h3>
+            </div>
+            <div class="card-body" style="padding: 2rem;">
+              <img src="<%= listing.image.url %>" class="card-img-top img-fluid rounded mb-4" alt="<%= listing.title %>"
+                style="object-fit: cover; border: 4px solid #e9ecef; transition: transform 0.3s ease;"
+                onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+              <ul class="list-group list-group-flush" style="border-radius: 10px; overflow: hidden;">
+                <li class="list-group-item"
+                  style="padding: 1.25rem; background: rgba(248, 249, 250, 0.8); transition: background-color 0.3s ease;"
+                  onmouseover="this.style.backgroundColor='rgba(248, 249, 250, 1)'"
+                  onmouseout="this.style.backgroundColor='rgba(248, 249, 250, 0.8)'">
+                  <strong style="color: #495057;">Description:</strong>
+                  <p class="text-muted" style="margin: 0.5rem 0 0; line-height: 1.6;">
+                    <%= listing.description %>
+                  </p>
+                </li>
+                <li class="list-group-item"
+                  style="padding: 1.25rem; background: rgba(248, 249, 250, 0.8); transition: background-color 0.3s ease;"
+                  onmouseover="this.style.backgroundColor='rgba(248, 249, 250, 1)'"
+                  onmouseout="this.style.backgroundColor='rgba(248, 249, 250, 0.8)'">
+                  <strong style="color: #495057;">Price:</strong>
+                  <span class="" style="font-size: 1.2rem; font-weight: 600;">₹ <%=
+                      listing.price.toLocaleString("en-in") %> / Night</span>
+                </li>
+                <li class="list-group-item"
+                  style="padding: 1.25rem; background: rgba(248, 249, 250, 0.8); transition: background-color 0.3s ease;"
+                  onmouseover="this.style.backgroundColor='rgba(248, 249, 250, 1)'"
+                  onmouseout="this.style.backgroundColor='rgba(248, 249, 250, 0.8)'">
+                  <strong style="color: #495057;">Location:</strong>
+                  <span style="font-style: italic;">
+                    <%= listing.location %>
+                  </span>
+                </li>
+                <li class="list-group-item"
+                  style="padding: 1.25rem; background: rgba(248, 249, 250, 0.8); transition: background-color 0.3s ease;"
+                  onmouseover="this.style.backgroundColor='rgba(248, 249, 250, 1)'"
+                  onmouseout="this.style.backgroundColor='rgba(248, 249, 250, 0.8)'">
+                  <strong style="color: #495057;">Country:</strong>
+                  <span style="font-style: italic;">
+                    <%= listing.country %>
+                  </span>
+                </li>
+                <li class="list-group-item"
+                  style="padding: 1.25rem; background: rgba(248, 249, 250, 0.8); transition: background-color 0.3s ease;"
+                  onmouseover="this.style.backgroundColor='rgba(248, 249, 250, 1)'"
+                  onmouseout="this.style.backgroundColor='rgba(248, 249, 250, 0.8)'">
+                  <strong style="color: #495057;">Posted by: </strong>
+                  <a href="/listing/user/<%= listing.owner._id %>/post" style="font-style: italic;" class="listuser">
+                    <%= listing.owner.username %>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
+              <!-- New Edit and Delete Buttons -->
+              <div class="card-footer bg-light text-center d-flex justify-content-center two-btn gap-3 my-4"
+                style="padding: 1.5rem; background: #f8f9fa;">
+                <a href="/listing/<%= listing.id %>/edit" class="btn edit-btn position-relative overflow-hidden"
+                  style="padding: 0.75rem 2rem; border-radius: 25px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; background: linear-gradient(45deg, #007bff, #00b4ff); color: white; border: none; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); transition: all 0.3s ease;"
+                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.2)'; this.querySelector('.hover-overlay').style.opacity='0.2'"
+                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 123, 255, 0.3)'; this.querySelector('.hover-overlay').style.opacity='0'">
+                  <span class="position-relative z-1">Edit Listing</span>
+                  <span class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-0 hover-overlay"
+                    style="transition: opacity 0.3s ease;"></span>
+                </a>
+                <form action="/listing/<%= listing.id %>?_method=DELETE" method="post" class="d-inline">
+                  <button type="submit" class="btn delete-btn position-relative overflow-hidden"
+                    style="padding: 0.75rem 2rem; border-radius: 25px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; background: linear-gradient(45deg, #dc3545, #ff7582); color: white; border: none; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3); transition: all 0.3s ease;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.2)'; this.querySelector('.hover-overlay').style.opacity='0.2'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(220, 53, 69, 0.3)'; this.querySelector('.hover-overlay').style.opacity='0'">
+                    <span class="position-relative z-1">Delete Listing</span>
+                    <span class="position-absolute top-0 start-0 w-100 h-100 bg-danger opacity-0 hover-overlay"
+                      style="transition: opacity 0.3s ease;"></span>
+                  </button>
+                </form>
+              </div>
+              <% } %>
+          </div>
+        </div>
+
+        <!-- Right Column: Reviews and Map -->
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="card shadow-lg border-0"
+            style="border-radius: 15px; overflow: hidden; background: linear-gradient(to bottom right, #ffffff, #f1f3f5); transition: transform 0.3s ease, box-shadow 0.3s ease;"
+            onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0, 0, 0, 0.1)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+            <div class="card-header text-center bg-secondary text-white"
+              style="border-bottom: 3px solid #ffffff; padding: 1.25rem;">
+              <h4 class="card-title" style="margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Reviews</h4>
+            </div>
+            <div class="card-body" style="padding: 2rem;">
+              <!-- Review Form -->
+              <% if(currUser) { %>
+                <h5 class="mb-3" style="color: #343a40; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem;">Leave
+                  a Review</h5>
+                <form action="/listing/<%= listing.id %>/review" novalidate class="needs-validation" method="POST">
+                  <div class="mb-3">
+                    <label for="rating" class="form-label fw-bold" style="color: #495057;">Rating</label>
+                    <fieldset class="starability-slot mt-2">
+                      <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
+                        aria-label="No rating." />
+                      <input type="radio" id="first-rate1" name="rating" value="1" />
+                      <label for="first-rate1" title="Terrible">1 star</label>
+                      <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                      <label for="first-rate2" title="Not good">2 stars</label>
+                      <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                      <label for="first-rate3" title="Average">3 stars</label>
+                      <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                      <label for="first-rate4" title="Very good">4 stars</label>
+                      <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                      <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                  </div>
+                  <div class="mb-3">
+                    <label for="comment" class="form-label fw-bold" style="color: #495057;">Comments</label>
+                    <textarea name="review[comment]" id="comment" class="form-control shadow-sm" cols="30" rows="3"
+                      required placeholder="Share your experience..."
+                      style="resize: none; border-radius: 8px; border: 1px solid #ced4da; transition: border-color 0.3s ease;"
+                      onfocus="this.style.borderColor='#007bff'" onblur="this.style.borderColor='#ced4da'"></textarea>
+                    <div class="invalid-feedback">
+                      Please share your experience before submitting.
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 shadow-sm"
+                    style="border-radius: 25px; padding: 0.75rem; background: linear-gradient(45deg, #007bff, #00b4ff); border: none; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 123, 255, 0.4)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 123, 255, 0.2)'">Submit
+                    Review</button>
+                </form>
+                <% } %>
+
+                  <!-- Display Existing Reviews -->
+                  <div class="my-4">
+                    <h5 class="mb-3" style="color: #343a40; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem;">
+                      Recent Reviews</h5>
+                    <% if (listing.reviews && listing.reviews.length> 0) { %>
+                      <% listing.reviews.forEach(review=> { %>
+                        <div class="card mb-3 shadow-sm"
+                          style="border-radius: 10px; background: #fff; transition: transform 0.3s ease;"
+                          onmouseover="this.style.transform='translateY(-5px)'"
+                          onmouseout="this.style.transform='translateY(0)'">
+                          <div class="card-body" style="padding: 1.25rem;">
+                            <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">Rating: <span
+                                style="color: #ffc107;">★ <%= review.rating %>/5</span></h6>
+
+                            <p class="starability-result" data-rating="<%= review.rating %>">
+                              Rated: <%= review.rating %> stars
+                            </p>
+                            <p class="card-text" style="margin-bottom: 0.5rem; line-height: 1.5; color: #495057;">
+                              <%= review.comment %>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <small class="text-muted" style="font-style: italic;">By: <strong>
+                                  <%= review.author.username %>
+                                </strong></small>
+                              <form action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE"
+                                method="post">
+                                <button class="btn btn-sm btn-outline-danger"
+                                  style="border-radius: 20px; padding: 0.25rem 1rem; transition: all 0.3s ease;"
+                                  onmouseover="this.style.backgroundColor='#dc3545'; this.style.color='white';"
+                                  onmouseout="this.style.backgroundColor='transparent'; this.style.color='#dc3545';">Delete</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <% }) %>
+                          <% } else { %>
+                            <div class="main-mutetext">
+                              <p class="review-muted">
+                                No reviews yet. Be the first to share your experience!!
+                              </p>
+                            </div>
+                            <% } %>
+                  </div>
+                  <div class="map-container">
+                    <h3 class="card-title">Where You'll Be</h3>
+                    <div id="map" class="custom-map"></div>
+                  </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </body>
+  <script>
+    let mapToken = "<%= process.env.MAP_TOKEN %>";
+    const coordinate = JSON.parse("<%= JSON.stringify(listing.geometry.coordinates) %>");
+  
+    // Set Mapbox access token
+    mapboxgl.accessToken = mapToken;
+  
+    // Initialize the map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: coordinate,
+      zoom: 8,
+    });
+  
+    // Create the popup
+    const popup = new mapboxgl.Popup({
+      closeButton: true,
+      closeOnClick: false,
+      offset: 25,
+      className: 'custom-popup',
+    }).setHTML(`
+      <div class="popup-content">
+        <h4>Main Address will provide after booking</h4>
+        <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+        <p><%= listing.description.substring(0, 100) %>...</p>
+        <a href="/listing/<%= listing.id %>" class="popup-link">View Details</a>
+      </div>
+    `);
+  
+    // Create the marker and attach the popup
+    const marker = new mapboxgl.Marker({
+      color: "#ff4500",
+      scale: 1.2,
+    })
+      .setLngLat(coordinate)
+      .setPopup(popup) // Attach popup to marker
+      .addTo(map);
+  
+    // Get the marker DOM element for animation
+    const markerElement = marker.getElement();
+  
+    // Add hover events for popup
+    markerElement.addEventListener('mouseenter', () => {
+      marker.togglePopup(); // Show popup on hover
+    });
+  
+    markerElement.addEventListener('mouseleave', () => {
+      marker.togglePopup(); // Hide popup on mouse leave
+    });
+
+  
+    // Add 3D terrain
+    map.on('load', () => {
+      map.addSource('mapbox-dem', {
+        'type': 'raster-dem',
+        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+      });
+      map.addLayer({
+        'id': 'terrain',
+        'type': 'hillshade',
+        'source': 'mapbox-dem',
+        'layout': {},
+        'paint': {
+          'hillshade-exaggeration': 0.5,
+        },
+      });
+    });
+  </script>

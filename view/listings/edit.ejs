@@ -1,0 +1,157 @@
+<% layout("/layouts/boilerplates") %>
+
+<body>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <h2 class="text-center mb-4" 
+            style="color: #343a40; font-weight: 700; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+          Edit Listing
+        </h2>
+
+        <!-- Edit Form -->
+        <form action="/listing/<%= listing.id %>?_method=PUT" 
+              method="post" 
+              class="border p-4 rounded shadow-sm bg-light mb-4 needs-validation" 
+              novalidate 
+              style="border-radius: 15px; background: linear-gradient(to bottom right, #ffffff, #f8f9fa); box-shadow: 0 5px 20px rgba(0,0,0,0.1);" enctype="multipart/form-data">
+          
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label" 
+                   style="font-weight: 600; color: #495057;">
+              Title
+            </label>
+            <input type="text" 
+                   name="listing[title]" 
+                   value="<%= listing.title %>" 
+                   class="form-control form-control-lg" 
+                   placeholder="Enter your title" 
+                   required 
+                   style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                   onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                   onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+            <div class="invalid-feedback" 
+                 style="font-size: 0.9rem; color: #dc3545;">
+              Please enter a valid title.
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label" 
+                   style="font-weight: 600; color: #495057;">
+              Description
+            </label>
+            <textarea name="listing[description]" 
+                      class="form-control form-control-lg" 
+                      placeholder="Enter your description" 
+                      rows="4" 
+                      required 
+                      style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; resize: vertical; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                      onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                      onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'"><%= listing.description %></textarea>
+            <div class="invalid-feedback" 
+                 style="font-size: 0.9rem; color: #dc3545;">
+              Please provide a description.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label" style="font-weight: 600; color: #495057;">
+              Your previous Image
+            </label>
+            <img src="<%= originalImage %>" style="height: 400px;" class="form-control">
+          </div>
+
+          <!-- Image Link -->
+            <div class="mb-3">
+              <label for="listing[image]" class="form-label" style="font-weight: 600; color: #495057;">
+                Upload Your Image
+              </label>
+              
+                <input type="file" name="listing[image]" class="form-control form-control-lg"
+                  placeholder="Enter your image link"
+                  style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                  onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                  onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'" >
+            </div>
+
+          <!-- Price -->
+          <div class="mb-3">
+            <label for="price" class="form-label" 
+                   style="font-weight: 600; color: #495057;">
+              Price
+            </label>
+            <input type="number" 
+                   name="listing[price]" 
+                   value="<%= listing.price %>" 
+                   class="form-control form-control-lg" 
+                   placeholder="Enter your price" 
+                   required 
+                   style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                   onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                   onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+            <div class="invalid-feedback" 
+                 style="font-size: 0.9rem; color: #dc3545;">
+              Please enter a valid price.
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label for="location" class="form-label" 
+                   style="font-weight: 600; color: #495057;">
+              Location
+            </label>
+            <input type="text" 
+                   name="listing[location]" 
+                   value="<%= listing.location %>" 
+                   class="form-control form-control-lg" 
+                   placeholder="Enter your location" 
+                   required 
+                   style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                   onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                   onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+            <div class="invalid-feedback" 
+                 style="font-size: 0.9rem; color: #dc3545;">
+              Please enter a valid location.
+            </div>
+          </div>
+
+          <!-- Country -->
+          <div class="mb-3">
+            <label for="country" class="form-label" 
+                   style="font-weight: 600; color: #495057;">
+              Country
+            </label>
+            <input type="text" 
+                   name="listing[country]" 
+                   value="<%= listing.country %>" 
+                   class="form-control form-control-lg" 
+                   placeholder="Enter your country name" 
+                   required 
+                   style="border-radius: 10px; border: 1px solid #ced4da; padding: 0.75rem 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
+                   onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 5px rgba(0,123,255,0.5)'"
+                   onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+            <div class="invalid-feedback" 
+                 style="font-size: 0.9rem; color: #dc3545;">
+              Please enter a valid country name.
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="d-grid">
+            <button type="submit" 
+                    class="btn btn-primary btn-lg" 
+                    style="border-radius: 25px; padding: 0.75rem 2rem; background: linear-gradient(45deg, #007bff, #00b4ff); border: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,123,255,0.4)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,123,255,0.2)'">
+              Update Listing
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplates") %>
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Posts of  <strong><%= userListings[0].owner.username %></strong> </h3>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <% for (let listing of userListings) { %>
+            <div class="col">
+                <a href="/listing/<%= listing.id %>" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm"
+                        onmouseover="this.style.boxShadow='0 .5rem 1rem rgba(0,0,0,.15)'"
+                        onmouseout="this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)'">
+                        <div class="image-container position-relative">
+                            <img src="<%= listing.image.url %>" class="card-img-top img-fluid"
+                                alt="<%= listing.title %>" style="height: 20rem; object-fit: cover;">
+                            <div class="card-img-overlay d-flex align-items-end p-3"
+                                style="opacity: 0; transition: opacity 0.3s ease;"
+                                onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                                <span class="badge bg-dark bg-opacity-75">
+                                    View Details
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-dark mb-2">
+                                <strong>
+                                    <%= listing.title %>
+                                </strong>
+                            </h5>
+                            <p class="card-text text-muted mb-2">
+                                <%= listing.description?.substring(0, 50) %>...
+                            </p>
+                            <p class="price text-success fw-bold mb-0" style="font-size: 1.1rem;">
+                                ₹ <%= listing.price.toLocaleString("en-in") %> / Night
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% } %>
+    </div>
+</div>

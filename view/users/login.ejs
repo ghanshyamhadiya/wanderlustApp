@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplates") %>
+
+
+<div class="row margin-user my-5  unique-signup-wrapper">
+    <h1 class="my-2 col-6 offset-3 signup-title-gradient">
+        login
+    </h1>
+    <div class="col-6 offset-3 signup-container-shadow">
+        <form action="/login" method="POST" class="needs-validation custom-signup-form" novalidate>
+            <div class="mb-3 input-group-float">
+                <input type="text" name="username" id="username"
+                class="form-control input-glow"
+                required />
+                <label for="username" class="form-label floating-label">username</label>
+            </div>
+            
+            
+            <div class="mb-3 input-group-float">
+                <input type="password" name="password" id="password"
+                class="form-control input-glow"
+                required />
+                <label for="password" class="form-label floating-label glow-pass">password</label>
+            </div>
+            <div class="signup_reco">
+                <p>Don't have account?? <a href="/signup">SignUp</a></p>
+            </div>
+            <button type="submit" class="btn btn-primary custom-btn-blue">Login</button>
+        </form>
+    </div>
+</div>
