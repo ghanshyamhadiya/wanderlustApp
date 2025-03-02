@@ -709,44 +709,102 @@ footer .f-info-links a {
 }
 
 
-
-.tax-switch {
-    border: 2px solid rgba(53, 53, 53, 0.628);
-    width: 240px;
+/* Container for tax switch and filter */
+.tax-switch-container {
     display: flex;
+    justify-content: space-between; /* Puts tax toggle and filter on opposite sides */
     align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    height: 50px;
-    padding: 5px 10px;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Unique gradient background */
+    border: 2px solid #6a82fb; /* Vibrant border */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     transition: all 0.3s ease;
-    /* Smooth transition for responsiveness */
 }
 
-/* Base styling for the form switch */
-.form-switch {
-    gap: 14px;
+/* Tax toggle styling */
+.tax-toggle {
     display: flex;
     align-items: center;
+    gap: 12px;
 }
 
-/* Style the switch input */
-.form-switch input {
-    border: 1px solid black;
-    height: 20px;
-    width: 40px;
+.tax-toggle input {
+    height: 24px;
+    width: 48px;
+    border: 2px solid #ff6f61; /* Coral border for uniqueness */
+    background-color: #fff;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    /* Smooth transition for size changes */
 }
 
-/* Style the label */
-.form-check-label {
-    font-size: 18px;
+.tax-toggle input:checked {
+    background-color: #ff6f61; /* Coral when checked */
+    border-color: #ff6f61;
+}
+
+.tax-toggle .form-check-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50; /* Darker shade for contrast */
+    text-transform: uppercase; /* Unique touch */
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Price filter styling */
+.price-filter .filter-btn {
+    background: linear-gradient(to right, #6a82fb, #fc5c7d); /* Gradient button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px; /* Rounded edges */
     font-weight: 600;
-    color: #333;
-    transition: font-size 0.3s ease;
-    /* Smooth transition for font size */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-filter .filter-btn:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.price-filter .dropdown-menu {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #6a82fb;
+}
+
+.price-filter .dropdown-item {
+    color: #2c3e50;
+    transition: background-color 0.2s ease;
+}
+
+.price-filter .dropdown-item:hover {
+    background-color: #fc5c7d; /* Matches gradient */
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .tax-switch-container {
+        flex-direction: column; /* Stack on small screens */
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .tax-toggle .form-check-label {
+        font-size: 14px;
+    }
+    
+    .price-filter .filter-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
 }
 
 /* Map */
