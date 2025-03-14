@@ -67,53 +67,30 @@
                 });
 
 
-
-                // Get the button and dropdown content
                 const button = document.getElementById("dropdownButton");
                 const dropdown = document.getElementById("dropdownContent");
 
-                // Toggle dropdown visibility when clicking the button
-                button.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent default button behavior
-                    event.stopPropagation(); // Stop the click from bubbling up unnecessarily
-                    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-                });
+                if (button && dropdown) {
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+                    });
 
-                // Close the dropdown if clicking outside
-                document.addEventListener("click", function (event) {
-                    if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                        dropdown.style.display = "none";
-                    }
-                });
-
-
-                let popup = "ON"
-
-                menuvertical.addEventListener("click", () => {
-                    if (popup == "ON") {
-                        // alert("popup is modified in OFF")
-                        popup = "OFF"
-                        // console.log(popup);
-                        popup_menu.style.top = "0"
-                    }
-                })
-
-                menuclose.addEventListener("click", () => {
-                    if (popup == "OFF") {
-                        // alert("popup is modified at ON")
-                        popup = "ON"
-                        // console.log(popup);
-                        popup_menu.style.top = "-100%"
-                    }
-                })
+                    document.addEventListener("click", function (event) {
+                        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                            dropdown.style.display = "none";
+                        }
+                    });
+                } else {
+                    console.error("Dropdown elements not found:", { button, dropdown });
+                }
 
 
             </script>
             <script src="/javascript/script.js"></script>
             <script src="/javascript/password.js"></script>
-            
+
 </body>
 
 </html>
-
-<!-- data-bs-theme="dark" -->
