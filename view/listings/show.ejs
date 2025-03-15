@@ -16,6 +16,11 @@
                   <%= listing.title %>
                 </strong>
               </h3>
+
+
+
+
+
             </div>
             <div class="card-body" style="padding: 2rem;">
               <img src="<%= listing.image.url %>" class="card-img-top img-fluid rounded mb-4" alt="<%= listing.title %>"
@@ -92,6 +97,22 @@
                   </button>
                 </form>
               </div>
+              <% } else { %> 
+                <% if (currUser) { %>
+                  <div class="d-flex justify-content-center mb-5">
+                    <form action="/wishlist/add/<%= listing.id %>" method="post" class="wishlist-form d-inline">
+                      <button class="wishlist-button btn delete-btn position-relative overflow-hidden unique-wishlist-btn">
+                        <% if (currUser.wishlist.includes(listing.id)) { %>
+                          <span class="wishlist-text">Unsave Listing</span>
+                        <% } else { %>
+                          <span class="icon heart-icon">♥</span>
+                          <span class="wishlist-text">Save Listing</span>
+                        <% } %>
+                      </button>
+                    </form>
+                  </div>
+                  
+              <% } %>
               <% } %>
           </div>
         </div>
