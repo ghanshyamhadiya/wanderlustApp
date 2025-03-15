@@ -20,13 +20,12 @@ const MongoStore = require("connect-mongo")
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./models/user.js")
-
+const {isLoggedIn} = require("./middleware.js")
 const listingRouter = require("./Routes/listing.js")
 const reviewRouter = require("./Routes/review.js")
 const userRouter = require("./Routes/user.js")
 const { storage } = require("./cloudConfig.js");
 const multer = require("multer");
-const Upload = multer({ storage: storage });
 
 app.engine('ejs', ejsMate)
 
@@ -110,6 +109,44 @@ app.use((req, res, next) => {
 app.use("/listing", listingRouter);
 app.use("/listing/:id/review", reviewRouter)
 app.use("/", userRouter)
+
+
+app.post("/wishlist/add/:id", isLoggedIn,async(req, res) => {
+    try{
+        let {id} = req.params
+
+        let userName = req.session.passport.user
+        let user = await User.findOne({username: userName})
+        
+        let index = user.wishlist.indexOf(id)
+        
+        if (index === -1) {
+            let wishlistAdd = user.wishlist.push(id)
+            req.flash("success", "added listing in wishlilst")
+            console.log(wishlistAdd)
+        } else{
+            user.wishlist.splice(index, 1);
+            req.flash("error", "removed listing from wishlilst")
+        }
+        await user.save()
+        res.redirect(`/listing/${id}`)
+    } catch(error){
+        req.flash("error", `something went wrong ${error}`)
+        res.redirect("/listing")
+    }
+
+})
+
+app.get("/wishlist", isLoggedIn,async(req, res) => {
+    let userName = req.session.passport.user
+    
+    let user = await User.findOne({username: userName})
+    let wishlist = user.wishlist
+
+    let listings = await Listing.find({ _id: { $in: wishlist } });
+
+    res.render("./listings/wishlist.ejs", { listings })
+})
 
 app.get("/listing/user/:userId/post", async(req, res) => {
     let {userId} = req.params;
