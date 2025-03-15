@@ -712,15 +712,20 @@ footer .f-info-links a {
 /* Container for tax switch and filter */
 .tax-switch-container {
     display: flex;
-    justify-content: space-between; /* Puts tax toggle and filter on opposite sides */
+    justify-content: space-between;
+    /* Puts tax toggle and filter on opposite sides */
     align-items: center;
     width: 100%;
-    max-width: 600px; /* Adjust as needed */
+    max-width: 600px;
+    /* Adjust as needed */
     padding: 10px 20px;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Unique gradient background */
-    border: 2px solid #6a82fb; /* Vibrant border */
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    /* Unique gradient background */
+    border: 2px solid #6a82fb;
+    /* Vibrant border */
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
     transition: all 0.3s ease;
 }
 
@@ -734,7 +739,8 @@ footer .f-info-links a {
 .tax-toggle input {
     height: 24px;
     width: 48px;
-    border: 2px solid #ff6f61; /* Coral border for uniqueness */
+    border: 2px solid #ff6f61;
+    /* Coral border for uniqueness */
     background-color: #fff;
     border-radius: 20px;
     cursor: pointer;
@@ -742,26 +748,31 @@ footer .f-info-links a {
 }
 
 .tax-toggle input:checked {
-    background-color: #ff6f61; /* Coral when checked */
+    background-color: #ff6f61;
+    /* Coral when checked */
     border-color: #ff6f61;
 }
 
 .tax-toggle .form-check-label {
     font-size: 16px;
     font-weight: 700;
-    color: #2c3e50; /* Darker shade for contrast */
-    text-transform: uppercase; /* Unique touch */
+    color: #2c3e50;
+    /* Darker shade for contrast */
+    text-transform: uppercase;
+    /* Unique touch */
     letter-spacing: 1px;
     transition: all 0.3s ease;
 }
 
 /* Price filter styling */
 .price-filter .filter-btn {
-    background: linear-gradient(to right, #6a82fb, #fc5c7d); /* Gradient button */
+    background: linear-gradient(to right, #6a82fb, #fc5c7d);
+    /* Gradient button */
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 20px; /* Rounded edges */
+    border-radius: 20px;
+    /* Rounded edges */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -769,7 +780,8 @@ footer .f-info-links a {
 }
 
 .price-filter .filter-btn:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px);
+    /* Slight lift on hover */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -785,22 +797,24 @@ footer .f-info-links a {
 }
 
 .price-filter .dropdown-item:hover {
-    background-color: #fc5c7d; /* Matches gradient */
+    background-color: #fc5c7d;
+    /* Matches gradient */
     color: white;
 }
 
 /* Responsive adjustments */
 @media (max-width: 576px) {
     .tax-switch-container {
-        flex-direction: column; /* Stack on small screens */
+        flex-direction: column;
+        /* Stack on small screens */
         gap: 10px;
         padding: 15px;
     }
-    
+
     .tax-toggle .form-check-label {
         font-size: 14px;
     }
-    
+
     .price-filter .filter-btn {
         padding: 6px 12px;
         font-size: 14px;
@@ -814,22 +828,22 @@ footer .f-info-links a {
     background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
     border-radius: 20px;
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
-  }
-  
-  .custom-map {
+}
+
+.custom-map {
     height: 300px;
     border-radius: 15px;
     border: 4px solid #3b82f6;
     box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
     transition: all 0.3s ease;
-  }
-  
-  .custom-map:hover {
+}
+
+.custom-map:hover {
     box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-  }
-  
-  /* Popup Styling */
-  .custom-popup .mapboxgl-popup-content {
+}
+
+/* Popup Styling */
+.custom-popup .mapboxgl-popup-content {
     background: linear-gradient(135deg, #ffffff, #f1f5f9);
     border-radius: 12px;
     padding: 1.5rem;
@@ -837,33 +851,33 @@ footer .f-info-links a {
     border: 2px solid #3b82f6;
     font-family: 'Arial', sans-serif;
     max-width: 300px;
-  }
-  
-  .custom-popup .mapboxgl-popup-close-button {
+}
+
+.custom-popup .mapboxgl-popup-close-button {
     color: #ef4444;
     font-size: 18px;
     transition: color 0.3s ease;
-  }
-  
-  .custom-popup .mapboxgl-popup-close-button:hover {
+}
+
+.custom-popup .mapboxgl-popup-close-button:hover {
     color: #dc2626;
-  }
-  
-  .popup-content h4 {
+}
+
+.popup-content h4 {
     margin: 0 0 10px;
     font-size: 1.2rem;
     color: #1e3a8a;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .popup-content p {
+}
+
+.popup-content p {
     margin: 0 0 8px;
     font-size: 0.9rem;
     color: #4b5563;
     line-height: 1.4;
-  }
-  
-  .popup-content .popup-link {
+}
+
+.popup-content .popup-link {
     display: inline-block;
     margin-top: 10px;
     padding: 0.4rem 1rem;
@@ -873,13 +887,13 @@ footer .f-info-links a {
     border-radius: 20px;
     font-size: 0.85rem;
     transition: all 0.3s ease;
-  }
-  
-  .popup-content .popup-link:hover {
+}
+
+.popup-content .popup-link:hover {
     background: linear-gradient(45deg, #2563eb, #3b82f6);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
-  }
+}
 
 
 
@@ -1045,5 +1059,64 @@ footer .f-info-links a {
 
     .custom-btn-blue {
         padding: 0.6rem 1.5rem;
+    }
+}
+
+/* style for whishlist */
+
+
+.unique-wishlist-btn {
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.unique-wishlist-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #ff8787, #ffa7a7);
+}
+
+.wishlist-text {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.heart-icon {
+    color: white;
+    font-size: 16px;
+    margin-right: 8px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.unique-wishlist-btn:hover .heart-icon {
+    transform: scale(1.2);
+}
+
+/* Ripple effect on click */
+.unique-wishlist-btn:active::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
     }
 }
