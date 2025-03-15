@@ -1064,7 +1064,6 @@ footer .f-info-links a {
 
 /* style for whishlist */
 
-
 .unique-wishlist-btn {
     padding: 10px 25px;
     background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
@@ -1118,5 +1117,54 @@ footer .f-info-links a {
     to {
         transform: translate(-50%, -50%) scale(2);
         opacity: 0;
+    }
+}
+
+
+/* Basic styling for the message */
+.no-data-message {
+    font-family: 'Courier New', Courier, monospace;
+    color: #6c757d;
+    overflow: hidden; /* Ensures the text is hidden until the typing effect is applied */
+    white-space: nowrap; /* Keeps the text on a single line */
+    margin: 0 auto; /* Centers the text */
+    letter-spacing: 0.15em; /* Adds spacing between letters for a typewriter effect */
+    font-size: 2.5rem; /* Default font size for larger screens */
+}
+
+/* Typing animation */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Apply the typing animation */
+.typing-animation {
+    animation: typing 3.5s steps(40, end);
+}
+
+/* Blinking cursor effect */
+.blinking-cursor {
+    font-weight: 100;
+    color: #6c757d;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .no-data-message {
+        font-size: 2rem; /* Smaller font size for tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .no-data-message {
+        font-size: 1.5rem; /* Even smaller font size for mobile devices */
     }
 }
