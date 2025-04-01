@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplates") %>
-    <div class="container mt-5">
-        <div class="tax-switch-container">
-            <div class="form-check form-switch tax-toggle">
+    <div class="container custom-mt">
+        <div class="tax-switch-container mt-5 ">
+            <div class="form-check form-switch tax-toggle ">
                 <input class="form-check-input custom-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Include Taxes</label>
             </div>
@@ -16,7 +16,9 @@
                         <li><a class="dropdown-item" href="#" data-min="1000" data-max="2000">₹1000 - ₹2000</a></li>
                         <li><a class="dropdown-item" href="#" data-min="2000" data-max="3500">₹2000 - ₹3500</a></li>
                         <li><a class="dropdown-item" href="#" data-min="3500" data-max="">₹3500+</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="#" data-min="" data-max="">Clear Filter</a></li>
                     </ul>
                 </div>
@@ -34,8 +36,9 @@
                             onmouseover="this.style.boxShadow='0 .5rem 1rem rgba(0,0,0,.15)'"
                             onmouseout="this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)'">
                             <div class="image-container position-relative">
-                                <img src="<%= listing.image.url %>" class="card-img-top img-fluid"
+                                <img loading="lazy" src="<%= listing.image.url %>" class="card-img-top img-fluid"
                                     alt="<%= listing.title %>" style="height: 20rem; object-fit: cover;">
+
                                 <div class="card-img-overlay d-flex align-items-end p-3"
                                     style="opacity: 0; transition: opacity 0.3s ease;"
                                     onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
